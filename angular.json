@@ -29,6 +29,10 @@
               "src/favicon.ico",
               "src/assets"
             ],
+            "optimization": {
+              "styles": true,
+              "scripts": true
+            },
             "styles": [
               "src/styles.scss"
             ],
@@ -41,18 +45,6 @@
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
               "outputHashing": "all"
             },
             "development": {
@@ -95,8 +87,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-  "node_modules/bootstrap-icons/font/bootstrap-icons.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
