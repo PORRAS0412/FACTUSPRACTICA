@@ -1,0 +1,76 @@
+/* Contenedor de la tarjeta */
+.card-container {
+  padding: 20px; /* Espaciado alrededor del contenedor */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+}
+
+/* Estilo para las filas impares */
+.red-row {
+  background-color: rgba(29, 136, 250, 0.33); /* Fondo azul con opacidad */
+}
+
+/* Estilo para el título del card */
+mat-card-header mat-card-title {
+  font-size: 24px;               /* Tamaño de fuente */
+  font-weight: bold;             /* Negrita */
+  color: #007bff;                /* Azul para el texto */
+  letter-spacing: 1px;           /* Espaciado entre letras */
+  text-transform: uppercase;     /* Mayúsculas */
+  margin-bottom: 8px;            /* Separación debajo del título */
+}
+
+/* Estilo para el subtítulo del card */
+mat-card-header mat-card-subtitle {
+  font-size: 16px;               /* Tamaño de fuente */
+  color: #777;                   /* Color gris claro para el subtítulo */
+  font-style: italic;            /* Estilo en cursiva */
+  letter-spacing: 0.5px;         /* Espaciado entre letras */
+  margin-bottom: 16px;           /* Separación debajo del subtítulo */
+}
+
+/* Estilo de la tarjeta */
+.example-card {
+  width: 100%; /* La tarjeta ocupa el 100% del ancho disponible */
+  max-width: 2000px; /* Limita el tamaño máximo */
+  margin: 15px 5px 20px 230px; /* Margen: arriba 20px, derecha 5px, abajo 20px, izquierda 230px */
+  padding: 20px; /* Añade espaciado interno */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Sombra azul suave */
+  border-radius: 10px; /* Esquinas redondeadas */
+  background-color: #f4faff; /* Fondo suave azul claro */
+  border: 2px solid #007bff; /* Borde azul */
+}
+
+/* Opcional: mejora la apariencia de los botones de la tarjeta */
+.mat-card-actions button {
+  margin: 5px;
+  background-color: #007bff; /* Fondo azul para los botones */
+  color: white; /* Texto blanco */
+  border: none;
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 8px 15px; /* Espaciado del botón */
+}
+
+/* Hover de los botones */
+.mat-card-actions button:hover {
+  background-color: #0056b3; /* Azul más oscuro al hacer hover */
+  cursor: pointer;
+}
+
+/* Contenedor de los campos del formulario */
+.form-row {
+  display: flex;
+  flex-wrap: wrap; /* Permite que los campos se ajusten en múltiples filas si es necesario */
+  gap: 16px; /* Espaciado entre campos */
+  margin-bottom: 20px; /* Espaciado entre filas */
+}
+
+/* Estilo de cada campo del formulario */
+.form-col {
+  flex: 1; /* Hace que las columnas sean flexibles */
+  min-width: calc(33.333% - 16px); /* 3 columnas por fila con espacio */
+  max-width: calc(33.333% - 16px); /* Asegura que no ocupen más espacio */
+  box-sizing: border-box; /* Incluye el padding y borde en el ancho total */
+}

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "HALLTECT": {
+    "HELPTEST_FRONT": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/halltect",
+            "outputPath": "dist/helptest-front",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "HALLTECT:build:production"
+              "buildTarget": "HELPTEST_FRONT:build:production"
             },
             "development": {
-              "buildTarget": "HALLTECT:build:development"
+              "buildTarget": "HELPTEST_FRONT:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "HALLTECT:build"
+            "buildTarget": "HELPTEST_FRONT:build"
           }
         },
         "test": {
@@ -95,12 +95,16 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+  "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "ae76c5b4-f372-4942-a483-0e647d135ac7"
   }
 }

@@ -1,0 +1,386 @@
+<div class="card-container">
+
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>Generación de factura</mat-card-title>
+      <mat-card-subtitle>Sobre la factura</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- FORMULARIO FACTURA -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+        <div class="form-row">
+          <div class="form-col">
+            <label for="numbering_range_id" class="form-label">Rango documento</label>
+            <select
+              id="numbering_range_id"
+              class="form-select"
+              formControlName="numbering_range_id"
+              [class.is-invalid]="form.get('numbering_range_id')?.invalid && form.get('numbering_range_id')?.touched"
+            >
+              <option value="" disabled selected>Seleccione</option>
+              <option *ngFor="let rangos of dataRangos" [value]="rangos.id">
+                {{ rangos.document }} ({{ rangos.prefix }})
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="form.get('numbering_range_id')?.hasError('required')">
+              El Rango es obligatorio.
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr>
+
+      <!-- FORMULARIO CLIENTE -->
+      <mat-card-header>
+        <mat-card-subtitle>Datos del cliente</mat-card-subtitle>
+      </mat-card-header>
+      <form [formGroup]="productFormcustomer" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+
+
+        <div class="form-row">
+          <div class="form-col">
+            <label for="identification_document_id" class="form-label">Tipo documento</label>
+            <select
+              id="identification_document_id"
+              class="form-select"
+              formControlName="identification_document_id"
+              [class.is-invalid]="productFormcustomer.get('identification_document_id')?.invalid && productFormcustomer.get('identification_document_id')?.touched"
+            >
+            <option value="" disabled selected>Seleccione</option>
+            <option [value]="1">Registro civil</option>
+            <option [value]="2">Tarjeta de identidad</option>
+            <option [value]="3">Cédula ciudadanía</option>
+            <option [value]="4">Tarjeta de extranjería</option>
+            <option [value]="5">Cédula de extranjería</option>
+            <option [value]="6">NIT</option>
+            <option [value]="7">Pasaporte</option>
+            <option [value]="8">Documento de identificación extranjero</option>
+            <option [value]="9">PEP</option>
+            <option [value]="10">NIT otro país</option>
+            <option [value]="11">NUIP *</option>
+
+            </select>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('identification_document_id')?.hasError('required')">
+              El tipo de documento es obligatorio.
+            </div>
+          </div>
+
+          <div class="form-col">
+            <label for="documento" class="form-label">Número documento</label>
+            <input
+              type="text"
+              id="documento"
+              class="form-control"
+              formControlName="identification"
+              [class.is-invalid]="productFormcustomer.get('identification')?.invalid && productFormcustomer.get('identification')?.touched"
+              (input)="filterOnlyNumbers($event)"
+            />
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('identification')?.hasError('required')">
+              El documento es obligatorio.
+            </div>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('identification')?.hasError('minlength')">
+              El documento debe tener al menos 5 caracteres.
+            </div>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('identification')?.hasError('maxlength')">
+              El documento no puede tener más de 15 caracteres.
+            </div>
+          </div>
+
+          <div class="form-col">
+            <label for="fullName" class="form-label">Nombre Completo</label>
+            <input
+              type="text"
+              id="fullName"
+              class="form-control"
+              formControlName="names"
+              [class.is-invalid]="productFormcustomer.get('names')?.invalid && productFormcustomer.get('names')?.touched"
+            />
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('names')?.hasError('required')">
+              El nombre es obligatorio.
+            </div>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('names')?.hasError('minlength')">
+              El nombre debe tener al menos 3 caracteres.
+            </div>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('names')?.hasError('maxlength')">
+              El nombre no puede tener más de 50 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <label for="company" class="form-label">Empresa</label>
+            <input
+              type="text"
+              id="company"
+              class="form-control"
+              formControlName="company"
+              [class.is-invalid]="productFormcustomer.get('company')?.invalid && productFormcustomer.get('company')?.touched"
+            />
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('company')?.hasError('required')">
+              La empresa es obligatoria.
+            </div>
+          </div>
+
+          <div class="form-col">
+            <label for="email" class="form-label">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              [class.is-invalid]="productFormcustomer.get('email')?.invalid && productFormcustomer.get('email')?.touched"
+            />
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('email')?.hasError('required')">
+              El correo electrónico es obligatorio.
+            </div>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('email')?.hasError('email')">
+              El correo electrónico no es válido.
+            </div>
+          </div>
+
+          <div class="form-col">
+            <label for="address" class="form-label">Dirección</label>
+            <input
+              type="text"
+              id="address"
+              class="form-control"
+              formControlName="address"
+              [class.is-invalid]="productFormcustomer.get('address')?.invalid && productFormcustomer.get('address')?.touched"
+            />
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('address')?.hasError('required')">
+              La dirección es obligatoria.
+            </div>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('address')?.hasError('minlength')">
+              La dirección debe tener al menos 8 caracteres.
+            </div>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('address')?.hasError('maxlength')">
+              La dirección no puede tener más de 50 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-col">
+            <label for="phone" class="form-label">Teléfono</label>
+            <input
+              type="text"
+              id="phone"
+              class="form-control"
+              formControlName="phone"
+              [class.is-invalid]="productFormcustomer.get('phone')?.invalid && productFormcustomer.get('phone')?.touched"
+              (input)="filterOnlyNumbers($event)"
+            />
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('phone')?.hasError('required')">
+              El teléfono es obligatorio.
+            </div>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('phone')?.hasError('pattern')">
+              El teléfono debe tener 10 dígitos.
+            </div>
+          </div>
+
+          <div class="form-col">
+            <label for="tributos" class="form-label">Tributos</label>
+            <select
+              id="tributos"
+              class="form-select"
+              formControlName="tribute_id"
+              [class.is-invalid]="productFormcustomer.get('tribute_id')?.invalid && productFormcustomer.get('tribute_id')?.touched"
+            >
+              <option value="" disabled selected>Seleccione</option>
+              <option *ngFor="let tributo of dataTributos" [value]="tributo.code">
+                {{ tributo.name }} ({{ tributo.description }})
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('tribute_id')?.hasError('required')">
+              El tributo es obligatorio.
+            </div>
+          </div>
+
+          <div class="form-col">
+            <label for="municipality_id" class="form-label">Municipio</label>
+            <select
+              id="municipality_id"
+              class="form-select"
+              formControlName="municipality_id"
+              [class.is-invalid]="productFormcustomer.get('municipality_id')?.invalid && productFormcustomer.get('municipality_id')?.touched"
+            >
+              <option value="" disabled selected>Seleccione</option>
+              <option *ngFor="let municipio of dataMunicipios" [value]="municipio.id">
+                {{ municipio.name }} - {{ municipio.department }}
+              </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="productFormcustomer.get('municipality_id')?.hasError('required')">
+              El municipio es obligatorio.
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">
+          Generar factura
+        </button>
+      </form>
+
+      <!-- Mensajes de validación -->
+      <div *ngIf="validationError" class="alert alert-danger mt-3">
+        {{ validationError }}
+      </div>
+      <div *ngIf="validationDanger" class="alert alert-danger mt-3">
+        {{ validationDanger }}
+      </div>
+      <div *ngIf="validationok" class="alert alert-success">
+        {{ validationok }}
+      </div>
+
+      <br>
+      <hr>
+
+      <!-- FORMULARIO PRODUCTOS -->
+      <mat-card-header>
+        <mat-card-subtitle>Productos en tu factura</mat-card-subtitle>
+      </mat-card-header>
+
+      <!-- Botón para agregar producto -->
+      <button class="btn btn-success w-100 mt-3" (click)="toggleProductForm()">
+        Agregar Producto a la factura
+      </button>
+
+     <!--  <div class="form-info">
+        <h4>Valores del formulario:</h4>
+        <pre>{{ productForm.value | json }}</pre>
+
+        <h4>Estado de validez:</h4>
+        <pre>{{ productForm.valid | json }}</pre>
+      </div>
+
+      Formulario desplegable de producto -->
+      <div *ngIf="showProductForm" class="mt-3">
+        <form [formGroup]="productForm" (ngSubmit)="onAddProduct()">
+
+          <div class="form-row">
+            <div class="form-col">
+              <label for="name" class="form-label">Nombre del Producto</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                formControlName="name"
+                [class.is-invalid]="productForm.get('name')?.invalid && productForm.get('name')?.touched"
+                required
+              />
+
+              <div class="invalid-feedback" *ngIf="productForm.get('name')?.hasError('required')">
+                El nombre del producto es obligatorio.
+              </div>
+              <div class="invalid-feedback" *ngIf="productForm.get('name')?.hasError('minlength')">
+                El documento debe tener al menos 5 caracteres.
+              </div>
+              <div class="invalid-feedback" *ngIf="productForm.get('name')?.hasError('maxlength')">
+                El documento no puede tener más de 50 caracteres.
+              </div>
+
+            </div>
+
+
+
+
+            <div class="form-col">
+              <label for="quantity" class="form-label">Cantidad</label>
+              <input
+                type="number"
+                id="quantity"
+                class="form-control"
+                formControlName="quantity"
+                [class.is-invalid]="productForm.get('quantity')?.invalid && productForm.get('quantity')?.touched"
+                (input)="filterOnlyNumbers($event)"
+                required
+              />
+              <div class="invalid-feedback" *ngIf="productForm.get('name')?.hasError('required')">
+                La cantidad es obligatoria.
+              </div>
+            </div>
+
+            <div class="form-col">
+              <label for="price" class="form-label">Precio</label>
+              <input
+                type="text"
+                id="price"
+                class="form-control"
+                formControlName="price"
+                [class.is-invalid]="productForm.get('price')?.invalid && productForm.get('price')?.touched"
+                (input)="filterOnlyNumbers($event)"
+                required
+              />
+              <div class="invalid-feedback" *ngIf="productForm.get('price')?.hasError('required')">
+                El precio del producto es obligatorio.
+              </div>
+              <div class="invalid-feedback" *ngIf="productForm.get('price')?.hasError('minlength')">
+                El precio debe tener al menos 3 caracteres.
+              </div>
+            </div>
+
+            <div class="form-col">
+              <label for="tax_rate" class="form-label">Tasa de Impuesto (%)</label>
+              <input
+                type="number"
+                id="tax_rate"
+                class="form-control"
+                formControlName="tax_rate"
+                [class.is-invalid]="productForm.get('tax_rate')?.invalid && productForm.get('tax_rate')?.touched"
+                required
+              />
+              <div class="invalid-feedback" *ngIf="productForm.get('tax_rate')?.hasError('required')">
+                El impuesto del producto es obligatorio, si no tiene marque 000.
+              </div>
+              <div class="invalid-feedback" *ngIf="productForm.get('tax_rate')?.hasError('minlength')">
+                El impuesto debe tener al menos 3 caracteres.
+              </div>
+            </div>
+
+          </div>
+          <button type="submit" class="btn btn-success w-100 mt-3">Guardar Producto</button>
+        </form>
+      </div>
+
+      <!-- Lista de productos agregados -->
+      <div class="mt-3">
+        <h3>Productos Agregados</h3>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Tasa de Impuesto</th>
+              <th>Total</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products; let i = index">
+              <td>{{ product.name }}</td>
+              <td>{{ product.quantity }}</td>
+              <td>{{ product.price | currency }}</td>
+              <td>{{ product.tax_rate }}%</td>
+              <td>{{ product.total | currency }}</td>
+              <td>
+                <button class="btn btn-danger" (click)="deleteProduct(i)">
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4" class="text-end"><strong>Total General:</strong></td>
+              <td>{{ getTotal() | currency }}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </mat-card-content>
+    <mat-card-actions></mat-card-actions>
+  </mat-card>
+</div>
+
+<app-menu></app-menu>

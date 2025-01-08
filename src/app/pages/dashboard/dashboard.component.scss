@@ -1,0 +1,62 @@
+/* Contenedor de la tarjeta */
+.card-container {
+  padding: 20px; /* Espaciado alrededor del contenedor */
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la pantalla */
+}
+
+.alertas{
+  z-index: 500;
+}
+/* Estilo para las filas impares */
+.red-row {
+  background-color: #1d88fa55; /* Fondo suave rojo */
+}
+
+/* Estilo para el título del card */
+mat-card-header mat-card-title {
+  font-size: 24px;               /* Tamaño de fuente */
+  font-weight: bold;             /* Negrita */
+  color: #007bff;                /* Azul para el título */
+  letter-spacing: 1px;           /* Espaciado entre letras */
+  text-transform: uppercase;     /* Mayúsculas */
+  margin-bottom: 8px;            /* Separación debajo del título */
+}
+
+/* Estilo para el subtítulo del card */
+mat-card-header mat-card-subtitle {
+  font-size: 16px;               /* Tamaño de fuente */
+  color: #777;                   /* Color gris claro para el subtítulo */
+  font-style: italic;            /* Estilo en cursiva */
+  letter-spacing: 0.5px;         /* Espaciado entre letras */
+  margin-bottom: 16px;           /* Separación debajo del subtítulo */
+}
+
+/* Estilo de la tarjeta */
+.example-card {
+  width: 100%; /* La tarjeta ocupa el 100% del ancho disponible */
+  max-width: 2000px; /* Limita el tamaño máximo */
+  margin: 15px 5px 20px 230px; /* Margen: arriba 20px, derecha 5px, abajo 20px, izquierda 230px */
+  padding: 20px; /* Añade espaciado interno */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Sombra azul suave */
+  border-radius: 10px; /* Esquinas redondeadas */
+  background-color: #f4faff; /* Fondo suave azul */
+  border: 2px solid #007bff; /* Borde azul */
+}
+
+/* Opcional: mejora la apariencia de los botones de la tarjeta */
+.mat-card-actions button {
+  margin: 5px;
+  background-color: #007bff; /* Fondo azul para los botones */
+  color: white; /* Texto blanco */
+  border: none;
+  border-radius: 5px; /* Bordes redondeados */
+  padding: 8px 15px; /* Espaciado del botón */
+}
+
+.mat-card-actions button:hover {
+  background-color: #0056b3; /* Azul más oscuro al hacer hover */
+  cursor: pointer;
+}

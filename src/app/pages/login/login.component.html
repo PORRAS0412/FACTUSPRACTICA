@@ -1,0 +1,92 @@
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="https://png.pngtree.com/png-clipart/20231206/original/pngtree-document-red-flat-icon-isolated-news-photo-png-image_13786585.png"
+          class="img-fluid" alt="Imagen de ejemplo">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+        <h2 class="text-center mb-4">Bienvenido</h2>
+        <p class="text-center mb-4">Puedes iniciar sesión con el usuario <strong>halltec</strong> y la contraseña <strong>halltec123**</strong></p>
+        <form>
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+            <p class="lead fw-normal mb-0 me-3">Inicia sesión</p>
+            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-floating mx-1">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+
+            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-floating mx-1">
+              <i class="fab fa-twitter"></i>
+            </button>
+
+            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-floating mx-1">
+              <i class="fab fa-linkedin-in"></i>
+            </button>
+          </div>
+
+          <!-- Campo de correo electrónico -->
+          <div data-mdb-input-init class="form-outline mb-4">
+            <input type="email" id="form3Example3" class="form-control form-control-lg" [(ngModel)]="user"
+              [ngModelOptions]="{standalone: true}" placeholder="Introduce Usuario o dirección de correo electrónico" />
+            <label class="form-label" for="form3Example3"> Usuario o dirección de correo electrónico</label>
+          </div>
+
+          <!-- Campo de contraseña -->
+          <div data-mdb-input-init class="form-outline mb-3">
+            <input class="form-control form-control-lg" [(ngModel)]="password"
+                   [ngModelOptions]="{standalone: true}" [type]="hide ? 'password' : 'text'" placeholder="Introduce la contraseña">
+            <label class="form-label" for="form3Example4">Contraseña</label>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center">
+            <!-- Checkbox -->
+            <div class="form-check mb-0">
+              <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+              <label class="form-check-label" for="form2Example3">
+                Recuérdame
+              </label>
+            </div>
+            <a href="#!" class="text-body">¿Olvidaste la contraseña?</a>
+          </div>
+
+          <div class="text-center text-lg-start mt-4 pt-2" >
+            <button (click)="iniciarsesion()" type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg"
+              style="padding-left: 2.5rem; padding-right: 2.5rem;" >Iniciar sesión</button>
+            <p class="small fw-bold mt-2 pt-1 mb-0">¿No tienes cuenta? <a href="#!" class="link-danger">Registrarse</a></p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5"
+    style="background-color: #fc1c2b;">
+    <!-- Copyright -->
+    <div class="text-white mb-3 mb-md-0">
+      Copyright © 2020. Todos los derechos reservados. | Creado por Andrés Julián Porras Gómez
+    </div>
+    <!-- Copyright -->
+
+    <!-- Información adicional -->
+    <div class="text-white mb-3 mb-md-0">
+      <p><strong>Contacto:</strong> Puedes ponerte en contacto con nosotros por correo electrónico: <a href="mailto:ajporras0412gmail.com" class="text-white">ajporras0412gmail.com</a></p>
+    </div>
+
+    <!-- Derechos -->
+    <div>
+      <a href="#!" class="text-white me-4">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="#!" class="text-white me-4">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="#!" class="text-white me-4">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="#!" class="text-white">
+        <i class="fab fa-linkedin-in"></i>
+      </a>
+    </div>
+    <!-- Derechos -->
+  </div>
+</section>

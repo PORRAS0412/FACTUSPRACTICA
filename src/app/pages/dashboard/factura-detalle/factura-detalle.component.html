@@ -1,0 +1,81 @@
+<div class="invoice-container">
+  <!-- Sección de la empresa -->
+  <div class="company-info">
+    <img [src]="data.company.url_logo" alt="Company Logo">
+    <div>
+      <h2>{{ data.company.name }}</h2>
+      <p>RUT: {{ data.company.nit }}-{{ data.company.dv }}</p>
+      <p>Actividad económica: {{ data.company.economic_activity }}</p>
+      <p>Teléfono: {{ data.company.phone }}</p>
+      <p>Email: {{ data.company.email }}</p>
+      <p>Dirección: {{ data.company.direction }}</p>
+      <p>Municipio: {{ data.company.municipality }}</p>
+    </div>
+  </div>
+
+  <!-- Sección de datos del cliente y factura (2 columnas) -->
+  <div class="invoice-info">
+    <!-- Datos del cliente -->
+    <div class="customer-info">
+      <h3>Datos del Cliente:</h3>
+      <p>Nombre: {{ data.customer.graphic_representation_name }}</p>
+      <p>Identificación: {{ data.customer.identification }}</p>
+      <p>Dirección: {{ data.customer.address }}</p>
+      <p>Email: {{ data.customer.email }}</p>
+      <p>Teléfono: {{ data.customer.phone }}</p>
+      <p>Organización: {{ data.customer.legal_organization.name }}</p>
+    </div>
+
+    <!-- Detalles de la factura -->
+    <div class="invoice-details">
+      <h3>Factura:</h3>
+      <p>Factura No: {{ data.bill.number }}</p>
+      <p>Fecha de emisión: {{ data.bill.created_at }}</p>
+      <p>Total: {{ data.bill.total | currency }}</p>
+      <p>IVA: {{ data.bill.tax_amount | currency }}</p>
+      <p>Descuento: {{ data.bill.discount | currency }}</p>
+      <p>Valor Bruto: {{ data.bill.gross_value | currency }}</p>
+      <p>Valor Imponible: {{ data.bill.taxable_amount | currency }}</p>
+    </div>
+  </div>
+
+  <!-- Productos -->
+  <div class="invoice-products">
+    <h3>Productos:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of data.items">
+          <td>{{ product.name }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>{{ product.total | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Código QR -->
+  <div class="qr-url">
+    <p>URL del QR:</p>
+    <a [href]="data.bill.qr" target="_blank">{{ data.bill.qr }}</a>
+    <img [src]="data.bill.qr_image" alt="QR Code">
+  </div>
+
+  <!-- Pie de página con botón -->
+  <div class="invoice-footer">
+    <!-- Botón de "Descargar Factura" -->
+    <button class="download-button" (click)="dowlandbill(data.bill.number)">Descargar Factura</button>
+
+    <!-- Botón de "Salir" con clase específica -->
+    <button class="exit-button" (click)="onClose()">Salir</button>
+  </div>
+
+</div>
