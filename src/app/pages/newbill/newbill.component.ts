@@ -84,7 +84,7 @@ export class NewbillComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       legal_organization_id: "2",
-      tribute_id: ['', Validators.required],
+      tribute_id: ['21', Validators.required],
       identification_document_id: ['', Validators.required],
       municipality_id: ['', Validators.required]
     });
