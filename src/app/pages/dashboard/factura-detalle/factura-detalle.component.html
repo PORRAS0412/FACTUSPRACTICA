@@ -30,6 +30,7 @@
     <div class="invoice-details">
       <h3>Factura:</h3>
       <p>Factura No: {{ data.bill.number }}</p>
+      <p>Codigo de referencia: {{ data.bill.reference_code }}</p>
       <p>Fecha de emisión: {{ data.bill.created_at }}</p>
       <p>Total: {{ data.bill.total | currency }}</p>
       <p>IVA: {{ data.bill.tax_amount | currency }}</p>
